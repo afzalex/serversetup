@@ -1,5 +1,4 @@
 #!/bin/bash
-source environment.sh
 
 sdalist=`sudo lsblk | grep -E 'sda[0-9]'`
 
