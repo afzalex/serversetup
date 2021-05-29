@@ -26,5 +26,6 @@ network:
             addresses:
                 - 192.168.29.205/24
                 - 192.168.29.215/24
+            gateway4: 192.168.29.1
             nameservers:
                 addresses: [8.8.8.8, 1.1.1.1]

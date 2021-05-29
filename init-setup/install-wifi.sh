@@ -9,7 +9,7 @@ wifiCardName=`ls -1 /sys/class/net | grep 'wlan'`
 sudo ifconfig "$wifiCardName" up
 
 read -p "Wifi SSID : " wifiSsid
-read -p "Wifi Password : " wifiPassword 
+read -s -p "Wifi Password : " wifiPassword 
 
 WIFI_AUTO_INSTALLER_FLAG_LINE="##_WIFI_AUTO_INSTALLER_FLAG_##"
 
