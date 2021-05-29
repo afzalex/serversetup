@@ -13,7 +13,7 @@ fi
 mkdir -p "${sharedDirectory}"
 
 SAMBA_AUTO_INSTALLER_FLAG_LINE="##_SAMBA_AUTO_INSTALLER_FLAG_##"
-sudo cat <<EOT >> /etc/samba/smb.cnf
+cat <<EOT | sudo tee -a /etc/samba/smb.cnf
 ${_SAMBA_AUTO_INSTALLER_FLAG_}
 [sambashare]
     comment = Samba Directory
