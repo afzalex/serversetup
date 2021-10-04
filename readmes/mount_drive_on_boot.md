@@ -1,6 +1,6 @@
+# Auto mount drive to system
+
 Commands helpful while playing with filesystems
-
-
 ```bash
 # To know UUID and filetype of drive
 sudo blkid 
@@ -50,3 +50,11 @@ If that also does not work, umask could be specified.
 ```
 UUID=B234-8EED		/home/ubuntu/media/sda1	exfat  defaults,uid=1000,gid=1000,umask=022	 0 	2
 ```
+
+
+---
+Mount command could be used directly if temporary mounting is intended. Just like in fstab, user rights could be given to mount command with `-o` parameter.
+```
+mount /sda/sda1 /home/ubuntu/media/sda1 -o defaults,uid=1000,gid=1000,umask=022
+```
+
