@@ -12,7 +12,7 @@ To add printer in mac :
     - Type: Windows printer via spoolss
     - Device: Another Device
     - URL: smb://<ip_address>/<printer_name> 
-        e.g. smb://192.168.29.205/EPSON_L3100_Series 
+        e.g. smb://192.168.29.205/EPSON_L3100_Series
     - Name: Any name that you want
         e.g. Epson Printer
     - Location: Any location name that you want
