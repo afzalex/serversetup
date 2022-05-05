@@ -33,5 +33,5 @@ if [[ $connectedDevicesCount == 0 ]]; then
     
 fi
 
-cat ../samples/music-sample.mp3 | ffplay -nodisp -
+cat ../samples/music-sample.mp3 | ffplay -nodisp -autoexit -
 
