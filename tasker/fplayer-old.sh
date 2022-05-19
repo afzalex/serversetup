@@ -1,13 +1,7 @@
 #!/bin/bash
-# Ref: https://pagaliworld.com/
+# Ref: https://pagalnew.com/search.php
 
-date "+%s"
-SITE_URL="https://pagaliworld.com"
-SITE_URL_TO_SEARCH="https://pagaliworld.com/files/search"
-SITE_URL_TO_SEARCH_QUERY_KEY="find"
-SITE_URL_REQUEST_HEADER_1="user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
-
-
+SITE_URL=https://pagalnew.com
 FPLAYER_DIR="${HOME}/.fplayer"
 
 FPLAYER_DIR_TEMP="${FPLAYER_DIR}/temp"
@@ -48,9 +42,6 @@ echo "Search Text is \"${searchText}\""
 
 FPLAYER_SEARCHTEXT_CACHEFILE="${FPLAYER_DIR_CACHE}/searchTextCacheFile.txt"
 touch "${FPLAYER_DIR_CACHE}/searchTextCacheFile.txt"
-
-
-# CACHE CHECK
 cacheSearchResult=$(cat "${FPLAYER_SEARCHTEXT_CACHEFILE}" | perl -nle "print $& while m{^\d{10}\s{4}${searchText}\$}g" | tail -n1)
 if [[ ! -z ${cacheSearchResult} ]]; then 
     echo "Downloaded result found in cache"
@@ -60,35 +51,26 @@ else
 
     FPLAYER_SEARCHRESULT_TEMPFILE="${FPLAYER_DIR_TEMP}/searchtext.dat"
     echo "Searching ..."
-    # SITE QUERY
-    curl -H "${SITE_URL_REQUEST_HEADER_1}" -s "${SITE_URL_TO_SEARCH}?${SITE_URL_TO_SEARCH_QUERY_KEY}=${searchText// /+}" > "${FPLAYER_SEARCHRESULT_TEMPFILE}" 
-
+    curl -s "${SITE_URL}/search.php?find=${searchText// /+}" > "${FPLAYER_SEARCHRESULT_TEMPFILE}" 
     searchResultUrl=$(cat "${FPLAYER_SEARCHRESULT_TEMPFILE}" | 
         tr '\n' ' ' | 
-        perl -nle 'print $& while m{<ul.*?</ul>}g' |
-        perl -nle 'print $& while m{<li>\s*<a href=.*?<img .*?></a>}g' |
-        perl -nle 'print $1 while m{(?<=<a href=")(.*?)"}g' |
-        head -n1 )
+        perl -nle 'print $& while m{Result.*}g' | 
+        perl -nle 'print $& while m{(?<=<a href=\").*?\.html}g' | 
+        head -n1)
     if [[ -z "$searchResultUrl" ]]; then
         echo "No result found"
         exit
     fi
-    echo $searchResultUrl
     searchResultAbsoluteUrl=${SITE_URL}${searchResultUrl}
-    echo $searchResultAbsoluteUrl
 
     FPLAYER_DOWNLOADPAGE_TEMPFILE="${FPLAYER_DIR_TEMP}/downloadPage.dat"
     echo "Crawling ${searchResultAbsoluteUrl}"
-    # CRAWL TO SEARCH DOWNLOAD LINK
-    curl -L -H "${SITE_URL_REQUEST_HEADER_1}" -s "$searchResultAbsoluteUrl" > "${FPLAYER_DOWNLOADPAGE_TEMPFILE}"
-    
-    downloadUrl=$(cat "${FPLAYER_DOWNLOADPAGE_TEMPFILE}" |
-        tr '\n' ' ' |
-        perl -nle 'print $& while m{<div class="dbutton">.*?320Kbps Mp3 Songs.*?</a>}g' |
-        perl -nle 'print $1 while m{<a .*?href="(.*?)" }g' |
-        tail -n1)
-    downloadUrl="${SITE_URL}${downloadUrl}"
-    # TODO: Incomplete part to execute when result not found
+    curl -s "$searchResultAbsoluteUrl" > "${FPLAYER_DOWNLOADPAGE_TEMPFILE}"
+    downloadUrl=$(cat "${FPLAYER_DOWNLOADPAGE_TEMPFILE}" | 
+        tr '\n' ' ' | 
+        perl -nle 'print $& while m{128 KBPS Song .*?320 KBPS Song Download.*?\>}g' | 
+        perl -nle 'print $& while m{(?<=href\=").*(?="\>)}g')
+
     if [[ -z "$downloadUrl" ]]; then
         echo "Download url not found"
         echo "Searching again in nested page"
@@ -117,18 +99,24 @@ else
             exit
         fi
     fi
-    
+
+
     outputFileName=$(date "+%s")
 
     outputFile="${FPLAYER_DIR_CACHE}/${outputFileName}"
     echo "Downloading result from ${downloadUrl} to ${outputFile}"
+    wget -O "${outputFile}" "${downloadUrl}"
 
-    wget --header="${SITE_URL_REQUEST_HEADER_1}" -O "${outputFile}" "${downloadUrl}"
     echo "${outputFileName}    ${searchText}" >> "${FPLAYER_SEARCHTEXT_CACHEFILE}"
 fi
 
 echo "Playing song from file \"${outputFile}\""
 FPLAYER_PROCESS_FILE="${FPLAYER_DIR_TEMP}/fplayer_process"
+
+# echo ffplay -nodisp -autoexit  "${outputFile}" > ${FPLAYER_PROCESS_FILE}
+# chmod +x "${FPLAYER_PROCESS_FILE}"
+
+# exec "${FPLAYER_PROCESS_FILE}"
 
 ffplay -nodisp -autoexit "${outputFile}" 
 
