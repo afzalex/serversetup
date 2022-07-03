@@ -7,6 +7,7 @@ SITE_URL_TO_SEARCH="https://pagaliworld.com/files/search"
 SITE_URL_TO_SEARCH_QUERY_KEY="find"
 SITE_URL_REQUEST_HEADER_1="user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.182 Safari/537.36"
 
+echo "Source website is \"${SITE_URL}\""
 
 FPLAYER_DIR="${HOME}/.fplayer"
 
@@ -59,9 +60,10 @@ if [[ ! -z ${cacheSearchResult} ]]; then
 else 
 
     FPLAYER_SEARCHRESULT_TEMPFILE="${FPLAYER_DIR_TEMP}/searchtext.dat"
-    echo "Searching ..."
     # SITE QUERY
-    curl -H "${SITE_URL_REQUEST_HEADER_1}" -s "${SITE_URL_TO_SEARCH}?${SITE_URL_TO_SEARCH_QUERY_KEY}=${searchText// /+}" > "${FPLAYER_SEARCHRESULT_TEMPFILE}" 
+    siteQueryString="${SITE_URL_TO_SEARCH}?${SITE_URL_TO_SEARCH_QUERY_KEY}=${searchText// /+}"
+    echo "Searching ... ${siteQueryString}"
+    curl -H "${SITE_URL_REQUEST_HEADER_1}" -s "${siteQueryString}" > "${FPLAYER_SEARCHRESULT_TEMPFILE}" 
 
     searchResultUrl=$(cat "${FPLAYER_SEARCHRESULT_TEMPFILE}" | 
         tr '\n' ' ' | 
@@ -87,7 +89,18 @@ else
         perl -nle 'print $& while m{<div class="dbutton">.*?320Kbps Mp3 Songs.*?</a>}g' |
         perl -nle 'print $1 while m{<a .*?href="(.*?)" }g' |
         tail -n1)
-    downloadUrl="${SITE_URL}${downloadUrl}"
+    
+    if [[ ! "$downloadUrl" == http* ]]; then
+        downloadUrl="${SITE_URL}${downloadUrl}"
+    fi
+
+    if [[ "$downloadUrl" == *.html ]]; then
+        downloadUrl2=$(echo "${downloadUrl}" | perl -nle 'print $1 if m{https://href\.li/\?(.*)}g')
+        if [[ ! -z ${downloadUrl2} ]]; then 
+            echo hola; 
+        fi
+    fi
+
     # TODO: Incomplete part to execute when result not found
     if [[ -z "$downloadUrl" ]]; then
         echo "Download url not found"
