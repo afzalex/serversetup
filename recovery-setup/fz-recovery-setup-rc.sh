@@ -1,9 +1,10 @@
 #!/bin/bash
-export RECOVERY_FLAG_DIR=/var/log/
+export RECOVERY_FLAG_DIR=/var/log/fz-recovery-setup
 export RECOVERY_EXECUTABLE=/usr/bin/fz-recovery-setup.sh
 
 if [[ -f "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_0" ]]; then
-    sh "${RECOVERY_FLAG_DIR}/recovery_file.sh"
+    sh "${RECOVERY_EXECUTABLE}"
+    rm "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_0"
     exit
 fi
 if [[ -f "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_1" ]]; then
