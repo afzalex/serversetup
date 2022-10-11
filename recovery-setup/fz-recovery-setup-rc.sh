@@ -2,9 +2,13 @@
 export RECOVERY_FLAG_DIR=/var/log/fz-recovery-setup
 export RECOVERY_EXECUTABLE=/usr/bin/fz-recovery-setup.sh
 
+rm -f "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_NA"
+rm -f "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_EXEC"
+
 if [[ -f "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_0" ]]; then
     sh "${RECOVERY_EXECUTABLE}"
     rm "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_0"
+    touch "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_EXEC"
     exit
 fi
 if [[ -f "${RECOVERY_FLAG_DIR}/RECOVERY_MODE_FLAG_1" ]]; then
