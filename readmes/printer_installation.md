@@ -1,3 +1,46 @@
+# Installation of printer driver in raspberry pi
+Install cups and lsb, add lpadmin group to your user
+
+```sh
+sudo apt-get install cups -y
+sudo apt-get install lsb -y
+sudo usermod -a -G lpadmin pi
+```
+
+Make cups ui accessible from remote machines
+```sh
+sudo cupsctl --remote-admin
+sudo cupsctl --remote-any
+#sudo cupsctl --share-printers
+```
+
+
+Install printer drivers
+```sh
+sudo apt-get install printer-driver-escpr
+```
+
+Install and configure samba
+```sh
+sudo apt-get install samba
+```
+Add a user to allow for printing.
+```sh
+sudo useradd sheikhs
+sudo smbpasswd -a sheikhs
+```
+Update printers section in /etc/samba/smb.conf
+```sh
+[printers]
+   comment = All Printers
+   browseable = yes
+   path = /var/tmp
+   printable = yes
+   guest ok = no
+   read only = yes
+   create mask = 0700
+```
+
 # Printer installation and sharing via Samba
 
 Download software :
