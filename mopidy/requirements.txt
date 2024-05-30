@@ -1,3 +1,4 @@
 mopidy
 Mopidy-Iris
 mopidy-ytmusic
+Mopidy-MPD

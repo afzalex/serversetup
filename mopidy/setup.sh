@@ -8,6 +8,7 @@ sudo apt install -y \
     gir1.2-gst-plugins-base-1.0 \
     gir1.2-gstreamer-1.0 \
     gstreamer1.0-plugins-good \
+    gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-ugly \
     gstreamer1.0-tools \
     libcairo2-dev \
@@ -32,3 +33,10 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
+
+# To control mpd with command line
+sudo apt-get install -y mpc
+
+# Add a sample music
+mkdir -p ~/Media
+cp music-sample.wav ~/Media/
