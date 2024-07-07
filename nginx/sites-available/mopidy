@@ -1,7 +1,7 @@
 server {
 	listen 443 ssl;
 
-	server_name fzbox.local 192.168.29.147 ;
+	server_name fzbox.local;
 
         ssl_certificate /etc/nginx/ssl/fzbox.local.crt;
         ssl_certificate_key /etc/nginx/ssl/fzbox.local.key;
@@ -25,6 +25,6 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name fzbox.local 192.168.29.147;
+    server_name fzbox.local;
     return 301 https://$host$request_uri;  # Redirect all HTTP traffic to HTTPS
 }
