@@ -1,0 +1,9 @@
+[entryPoints]
+   [entryPoints.web]
+   address = ":8080" # Custom HTTP port    
+   
+   [entryPoints.websecure]   
+   address = ":8443" # Custom HTTPS port  
+
+[providers.file]
+   filename = "dynamic_conf.toml" # This file would contain other dynamic routing configurations
