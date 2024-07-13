@@ -4,8 +4,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=afzalex
-ExecStart=${TRAEFIK_LOC} --configFile=${TRAEFIC_CONFIG_LOC}
+User=root
+ExecStart=${TRAEFIK_LOC}/traefik --configFile=${TRAEFIK_LOC}/traefik.toml
 Restart=always
 
 [Install]
