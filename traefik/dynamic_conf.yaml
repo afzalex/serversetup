@@ -1,0 +1,14 @@
+http:
+  routers:
+    mopidy:
+      rule: "PathRegexp(`.*`)"
+      entryPoints:
+        - "web"
+        - "websecure"
+      service: "mopidy"
+
+  services:
+    mopidy:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:6680"

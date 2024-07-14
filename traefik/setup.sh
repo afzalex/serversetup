@@ -14,7 +14,7 @@ export TRAEFIK_LOC="$PWD/.build"
 export TRAEFIK_SSL_LOC="$PWD/ssl"
 
 envsubst '$TRAEFIK_LOC $TRAEFIK_SSL_LOC' < traefik.toml.tpl > .build/traefik.toml
-cp *.toml .build/dynamic/
+cp *.yaml .build/dynamic/
 envsubst '$TRAEFIK_LOC' < traefik.service.tpl > .build/traefik.service
 
 sudo cp .build/traefik.service /etc/systemd/system/traefik.service
