@@ -6,6 +6,8 @@ http:
         - "web"
         - "websecure"
       service: "mopidy"
+      middlewares:
+        - "redirect-to-https"
 
   services:
     mopidy:

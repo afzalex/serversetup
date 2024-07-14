@@ -6,6 +6,8 @@ http:
         - "web"
         - "websecure"
       service: "filebrowser"
+      middlewares:
+        - "redirect-to-https"
 
   services:
     filebrowser:

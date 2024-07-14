@@ -12,6 +12,14 @@ providers:
     directory: "${TRAEFIK_LOC}/dynamic"
     watch: true
 
+
+http:
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
 log:
   level: DEBUG
   # filePath: "stdout"

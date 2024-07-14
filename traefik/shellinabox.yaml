@@ -8,6 +8,8 @@ http:
       service: "shellinabox"
       middlewares:
         - "strip-shell-prefix"
+        - "redirect-to-https"
+
   middlewares:
     strip-shell-prefix:
       stripPrefix:
