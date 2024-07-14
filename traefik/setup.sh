@@ -13,7 +13,7 @@ tar -xzvf "$filename" -C .build "traefik"
 export TRAEFIK_LOC="$PWD/.build"
 export TRAEFIK_SSL_LOC="$PWD/ssl"
 
-envsubst '$TRAEFIK_LOC $TRAEFIK_SSL_LOC' < traefik.toml.tpl > .build/traefik.toml
+envsubst '$TRAEFIK_LOC $TRAEFIK_SSL_LOC' < traefik.yaml.tpl > .build/traefik.yaml
 cp *.yaml .build/dynamic/
 envsubst '$TRAEFIK_LOC' < traefik.service.tpl > .build/traefik.service
 
