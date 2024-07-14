@@ -1,0 +1,21 @@
+http:
+  routers:
+    filebrowser:
+      rule: "PathPrefix(`/browser`)"
+      entryPoints:
+        - "web"
+        - "websecure"
+      service: "filebrowser"
+      middlewares:
+        - "strip-browser-prefix"
+  middlewares:
+    strip-browser-prefix:
+      stripPrefix:
+        prefixes:
+          - "/browser"
+
+  services:
+    filebrowser:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8080"
