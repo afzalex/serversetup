@@ -1,0 +1,21 @@
+http:
+  routers:
+    shellinabox:
+      rule: "PathPrefix(`/shell`)"
+      entryPoints:
+        - "web"
+        - "websecure"
+      service: "shellinabox"
+      middlewares:
+        - "strip-shell-prefix"
+  middlewares:
+    strip-shell-prefix:
+      stripPrefix:
+        prefixes:
+          - "/shell"
+
+  services:
+    shellinabox:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:4200"
