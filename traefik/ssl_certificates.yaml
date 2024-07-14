@@ -1,0 +1,10 @@
+tls:
+  certificates:
+    - certFile: "/home/afzalex/serversetup/traefik/ssl/fzbox.local.crt"
+      keyFile: "/home/afzalex/serversetup/traefik/ssl/fzbox.local.key"
+
+  stores:
+    default:
+      defaultCertificate:
+        certFile: "/home/afzalex/serversetup/traefik/ssl/fzbox.local.crt"
+        keyFile: "/home/afzalex/serversetup/traefik/ssl/fzbox.local.key"
