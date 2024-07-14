@@ -6,13 +6,6 @@ http:
         - "web"
         - "websecure"
       service: "filebrowser"
-      middlewares:
-        - "strip-browser-prefix"
-  middlewares:
-    strip-browser-prefix:
-      stripPrefix:
-        prefixes:
-          - "/browser"
 
   services:
     filebrowser:
