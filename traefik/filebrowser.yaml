@@ -8,6 +8,11 @@ http:
       service: "filebrowser"
       middlewares:
         - "redirect-to-https"
+  middlewares:
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+        permanent: true
 
   services:
     filebrowser:

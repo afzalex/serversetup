@@ -15,6 +15,10 @@ http:
       stripPrefix:
         prefixes:
           - "/shell"
+    redirect-to-https:
+      redirectScheme:
+        scheme: https
+        permanent: true
 
   services:
     shellinabox:

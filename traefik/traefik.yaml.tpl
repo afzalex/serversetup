@@ -13,13 +13,6 @@ providers:
     watch: true
 
 
-http:
-  middlewares:
-    redirect-to-https:
-      redirectScheme:
-        scheme: https
-        permanent: true
-
 log:
   level: DEBUG
   # filePath: "stdout"
