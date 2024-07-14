@@ -4,16 +4,11 @@
    
    [entryPoints.websecure]
       address = ":443"
+   [entryPoints.websecure.http.tls]
 
 [providers.file]
    directory = "${TRAEFIK_LOC}/dynamic"
    watch = true
-
-[tls.stores]
-[tls.stores.default]
-[tls.stores.default.defaultCertificate]
-certFile = "/home/afzalex/serversetup/traefik/ssl/fzbox.local.crt"
-keyFile = "/home/afzalex/serversetup/traefik/ssl/fzbox.local.key"
 
 # Global configuration
 [log]
