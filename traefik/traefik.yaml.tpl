@@ -1,13 +1,11 @@
 entryPoints:
   web:
     address: ":80"
+
   websecure:
     address: ":443"
     http:
-      tls:
-        certificates:
-          - certFile: "/home/afzalex/serversetup/traefik/ssl/fzbox.local.crt"
-            keyFile: "/home/afzalex/serversetup/traefik/ssl/fzbox.local.key"
+      tls: {}
 
 providers:
   file:
