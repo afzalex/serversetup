@@ -20,9 +20,9 @@
 #
 server {
 
-	listen 80 localhost;
+	listen localhost:8989;
 
-	# listen 80 default_server;
+	# listen 8989 default_server;
 	# listen [::]:80 default_server;
 
 	# SSL configuration
@@ -41,7 +41,8 @@ server {
 	#
 	# include snippets/snakeoil.conf;
 
-	root /var/www/html;
+	# root /var/www/html;
+	root /home/afzalex/serversetup/nginx/public;
 
 	# Add index.php to the list if you are using PHP
 	index index.html index.htm index.nginx-debian.html;
@@ -53,7 +54,12 @@ server {
 		# as directory, then fall back to displaying a 404.
 		try_files $uri $uri/ =404;
 	}
-
+    
+    # show directory listing when no index file exists
+    autoindex on;
+    autoindex_exact_size off;   # (optional) show human sizes
+    autoindex_localtime on;     # (optional) show local time
+    
 	# pass PHP scripts to FastCGI server
 	#
 	#location ~ \.php$ {

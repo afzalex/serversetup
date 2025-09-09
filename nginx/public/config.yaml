@@ -1,16 +1,15 @@
 server:
-  name: "example server"
+  name: "fzbox"
   # Subtitle can be a simple string:
   # subtitle: "Subtitle of the server"
   #
   # Or an array of items (like footer):
   subtitle:
     - type: "text"
-      content: "Subtitle of the server"
+      content: "Raspberry Pi Server of"
     - type: "link"
-      label: "my example server"
-      url: "https://example.com/details"
-
+      label: "Mohammad Afzal"
+      url: "https://afzalex.com/"
   
   # Additional customizable content at the bottom of header
   # Can be a simple string:
@@ -25,70 +24,84 @@ server:
   #     url: "https://example.com"
 
 services:
-  - name: "Web Server"
-    description: "Main web application server running on port 5173"
-    icon: "MdComputer"             # Material Design icon (starts with "Md")
-    url: "http://localhost:5173"
-    healthCheckUrl: "http://localhost:5173"
-  - name: "API Service"
-    description: "REST API backend service"
-    icon: "FaCode"                 # Font Awesome icon
-    url: "http://localhost:3000"
-    healthCheckUrl: "http://localhost:3000/health"
-  # - name: "Docker"
-  #   description: "Docker container management"
-  #   icon: "MdApps"               # Material Design icon
-  #   url: "http://localhost:2375"
-  #   healthCheckUrl: "http://localhost:2375"
-  - name: "Cloud Storage"
-    description: "Object storage service"
-    icon: "FaCloud"                # Font Awesome icon
-    healthCheckUrl: "http://localhost:9000/health"
-  # - name: "Network Monitor"
-  #   description: "Network traffic monitoring service"
-  #   icon: "MdNetworkCheck"       # Material Design icon
-  #   healthCheckUrl: "http://localhost:9090/health"
-
+  - name: "Notes"
+    description: "Personal markdown notes and knowledge base"
+    icon: "MdEditNote"
+    url: "/notes/"
+    healthCheckUrl: "/notes/"
+  - name: "File Browser"
+    description: "File browser for viewing the files in the server"
+    icon: "MdFolderOpen"
+    url: "/browser/"
+    healthCheckUrl: "/browser"
+  - name: "Shell"
+    description: "Terminal access to server via ttyd"
+    icon: "FaTerminal"
+    url: "/ttyd/"
+    healthCheckUrl: "/ttyd/"
+  - name: "Mopidy"
+    description: "Music streaming with Iris web interface"
+    icon: "MdQueueMusic"
+    url: "/iris/"
+    healthCheckUrl: "/iris/"
 
 footer:
   enabled: true                    # Show/hide footer
-  content:
-    - type: "text"
-      content: "Custom footer content"
+  content: 
     - type: "link"
-      label: "with link"
-      url: "https://github.com/afzalex/fzlaunchpad"
+      label: "Internal Version"
+      url: "https://fzbox.local"
+      target: "_self"
+    - type: "text"
+      content: "|"
+    - type: "link"
+      label: "Tailscale Version"
+      url: "https://fzbox"
+      target: "_self"
+    - type: "text"
+      content: "|"
+    - type: "link"
+      label: "Internet Version"
+      url: "https://fzbox.afzalex.com"
+      target: "_self"
 
 theme:
   backgroundImage:
-    url: "/images/background2.jpg" # Background image URL (e.g., "/images/bg.jpg" or "https://example.com/bg.jpg")
-    opacity: 0.25                  # Background image opacity (0.0 to 1.0)
-    position: "center"             # Background position (center, top, bottom, left, right, etc.)
-    size: "cover"                  # Background size (cover, contain, auto, etc.)
-    repeat: "no-repeat"            # Background repeat (no-repeat, repeat, repeat-x, repeat-y)
+    url: "/images/background3.jpg"  # Background image URL (e.g., "/images/bg.jpg" or "https://example.com/bg.jpg")
+    opacity: 1                      # Background image opacity (0.0 to 1.0)
+    position: "center"              # Background position (center, top, bottom, left, right, etc.)
+    size: "cover"                   # Background size (cover, contain, auto, etc.)
+    repeat: "no-repeat"             # Background repeat (no-repeat, repeat, repeat-x, repeat-y)
   colors:
-    background: "#ecebe4aa"        # Main page background (lightest)
-    cardBackground: "#dddbcdff"    # Service card backgrounds
-    mediumAccent: "#2D531A"        # Borders and medium accents
-    darkAccent: "#EEEEEE"          # Darker borders and accents
-    text: "#071E07"                # Text color (darkest)
-    headerBackground: "#dddbcd99"  # Header background color
-    headerText: "#071E07"          # Header text color
-    footerBackground: "#dddbcd99"  # Footer background color
-    footerText: "#071E07"          # Footer text color
+    background: "#bebfbe"           # Main page background (lightest)
+    cardBackground: "#dedede"       # Service card backgrounds
+    mediumAccent: "#2D531A"         # Borders and medium accents
+    darkAccent: "#EEEEEE"           # Darker borders and accents
+    text: "#071E07"                 # Text color (darkest)
+    headerBackground: "#fcfffeaa"   # Header background color
+    headerText: "#071E07"           # Header text color
+    footerBackground: "#c9c9c9aa"   # Footer background color
+    footerText: "#000000"           # Footer text color
     serviceStatus:
       # HTTP Status Code to Color Mappings
-      "0": "#808080"               # Status code 0 (stopped/unreachable) color
-      "200-299": "#009d24"         # Status codes 200-299 (success) color
-      "300-399": "#3b82f6"         # Status codes 300-399 (redirect) color
-      "400-499": "#ef4444"         # Status codes 400-499 (client error) color
-      "500-599": "#f59e0b"         # Status codes 500-599 (server error) color
-      "checking": "#3b82f6"        # Status code checking color
+      "0": "#808080"                # Status code 0 (stopped/unreachable) color
+      "401": "#009d24"              # Status code 401 (secured) color
+      "302": "#009d24"              # Status code 302 (secured redirect) color
+      "404": "#808080"              # Status code 404 (not available) color
+      "200-299": "#009d24"          # Status codes 200-299 (success) color
+      "300-399": "#3b82f6"          # Status codes 300-399 (redirect) color
+      "400-499": "#ef4444"          # Status codes 400-499 (client error) color
+      "500-599": "#f59e0b"          # Status codes 500-599 (server error) color
+      "checking": "#808080"         # Status code checking (checking) color
 
 statusMapping:
   # HTTP Status Code to Service Status Name Mappings
   "0": "stopped"     
+  "401": "Running (Secured)"
+  "302": "Running (Secured Redirect)"
+  "404": "Not Available"
   "200-299": "running"
   "300-399": "uknown"
   "400-499": "error"
   "500-599": "warning"
+  
