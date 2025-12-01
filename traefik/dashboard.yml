@@ -1,0 +1,17 @@
+http:
+  routers:
+    dash-redirect:
+      rule: Path(`/dashboard`)
+      service: noop@internal
+      middlewares:
+        - common-add-slash
+        - common-strip-first
+      priority: 10000
+
+    api:
+      rule: PathPrefix(`/dashboard/`) || PathPrefix(`/api`)
+      service: api@internal
+      # tls: {}
+      middlewares:
+        - common-redirect-to-https
+        - common-auth

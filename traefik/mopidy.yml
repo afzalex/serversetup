@@ -1,0 +1,13 @@
+http:
+  routers:
+    mopidy:
+      rule: "PathPrefix(`/iris`) || PathPrefix(`/mopidy`)"
+      service: "mopidy-service"
+      middlewares:
+        - "common-redirect-to-https"
+
+  services:
+    mopidy-service:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:6680"

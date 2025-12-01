@@ -2,23 +2,16 @@ http:
   routers:
     shellinabox:
       rule: "PathPrefix(`/shell`)"
-      entryPoints:
-        - "web"
-        - "websecure"
       service: "shellinabox"
       middlewares:
         - "strip-shell-prefix"
-        - "redirect-to-https"
+        - "common-redirect-to-https"
 
   middlewares:
     strip-shell-prefix:
       stripPrefix:
         prefixes:
           - "/shell"
-    redirect-to-https:
-      redirectScheme:
-        scheme: https
-        permanent: true
 
   services:
     shellinabox:
