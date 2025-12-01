@@ -12,6 +12,7 @@ providers:
     directory: "${TRAEFIK_LOC}/dynamic"
     watch: true
 
+api: {}
 
 log:
   level: DEBUG

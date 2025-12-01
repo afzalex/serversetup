@@ -1,0 +1,13 @@
+http:
+  routers:
+    filebrowser:
+      rule: "PathPrefix(`/browser`)"
+      service: "filebrowser-service"
+      middlewares:
+        - "common-redirect-to-https"
+
+  services:
+    filebrowser-service:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8080"
