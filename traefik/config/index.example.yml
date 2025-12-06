@@ -1,0 +1,15 @@
+# index.yml
+http:
+  routers:
+    index:
+      rule: Host(`localhost`) && Path(`/`)
+      service: fzpublic@docker
+      middlewares:
+        # Uncomment this to enable HTTPS redirection
+        # - common-redirect-to-https
+
+  services:
+    public-service:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8989"
