@@ -3,7 +3,7 @@ http:
   routers:
     index:
       rule: Host(`localhost`) && Path(`/`)
-      service: fzpublic@docker
+      service: public-service
       middlewares:
         # Uncomment this to enable HTTPS redirection
         # - common-redirect-to-https
