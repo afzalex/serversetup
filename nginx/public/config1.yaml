@@ -1,0 +1,93 @@
+server:
+  name: "example server"
+  # Subtitle can be a simple string:
+  # subtitle: "Subtitle of the server"
+  #
+  # Or an array of items (like footer):
+  subtitle:
+    - type: "text"
+      content: "Subtitle of the server"
+    - type: "link"
+      label: "my example server"
+      url: "https://example.com/details"
+  
+  # Additional customizable content at the bottom of header
+  # Can be a simple string:
+  # headerContent: "Additional information here"
+  #
+  # Or an array of items (like footer and subtitle):
+  # headerContent:
+  #   - type: "text"
+  #     content: "Last updated: {year}"
+  #   - type: "link"
+  #     label: "View Details"
+  #     url: "https://example.com"
+
+services:
+  - name: "Web Server"
+    description: "Main web application server running on port 5173"
+    icon: "MdComputer"           # Material Design icon (starts with "Md")
+    url: "http://localhost:5173"
+    healthCheckUrl: "http://localhost:5173"
+  - name: "API Service"
+    description: "REST API backend service"
+    icon: "FaCode"               # Font Awesome icon
+    url: "http://localhost:3000"
+    healthCheckUrl: "http://localhost:3000/health"
+  # - name: "Docker"
+  #   description: "Docker container management"
+  #   icon: "MdApps"               # Material Design icon
+  #   url: "http://localhost:2375"
+  #   healthCheckUrl: "http://localhost:2375"
+  - name: "Cloud Storage"
+    description: "Object storage service"
+    icon: "FaCloud"               # Font Awesome icon
+    healthCheckUrl: "http://localhost:9000/health"
+  # - name: "Network Monitor"
+  #   description: "Network traffic monitoring service"
+  #   icon: "MdNetworkCheck"       # Material Design icon
+  #   healthCheckUrl: "http://localhost:9090/health"
+
+
+footer:
+  enabled: true                  # Show/hide footer
+  content:
+    - type: "text"
+      content: "Custom footer content"
+    - type: "link"
+      label: "with link"
+      url: "https://github.com/afzalex/fzlaunchpad"
+
+theme:
+  backgroundImage:
+    url: "/images/background1.jpg"  # Background image URL (e.g., "/images/bg.jpg" or "https://example.com/bg.jpg")
+    opacity: 1                    # Background image opacity (0.0 to 1.0)
+    position: "center"              # Background position (center, top, bottom, left, right, etc.)
+    size: "cover"                  # Background size (cover, contain, auto, etc.)
+    repeat: "no-repeat"            # Background repeat (no-repeat, repeat, repeat-x, repeat-y)
+  colors:
+    background: "#f3feff"        # Main page background (lightest)
+    cardBackground: "#e7f1f2"     # Service card backgrounds
+    mediumAccent: "#2D531A"      # Borders and medium accents
+    darkAccent: "#EEEEEE"         # Darker borders and accents
+    text: "#071E07"              # Text color (darkest)
+    headerBackground: "#d2dfe0"  # Header background color
+    headerText: "#071E07"        # Header text color
+    footerBackground: "#d2dfe0"  # Footer background color
+    footerText: "#071E07"        # Footer text color
+    serviceStatus:
+      # HTTP Status Code to Color Mappings
+      "0": "#808080"             # Status code 0 (stopped/unreachable) color
+      "200-299": "#009d24"       # Status codes 200-299 (success) color
+      "300-399": "#3b82f6"       # Status codes 300-399 (redirect) color
+      "400-499": "#ef4444"       # Status codes 400-499 (client error) color
+      "500-599": "#f59e0b"       # Status codes 500-599 (server error) color
+      "checking": "#3b82f6"       # Status code checking color
+
+statusMapping:
+  # HTTP Status Code to Service Status Name Mappings
+  "0": "stopped"     
+  "200-299": "running"
+  "300-399": "uknown"
+  "400-499": "error"
+  "500-599": "warning"
