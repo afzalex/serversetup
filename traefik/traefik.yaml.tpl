@@ -21,3 +21,9 @@ log:
 accessLog:
   # filePath: "stdout"
   format: "common"
+
+# experimental:
+#   plugins:
+#     traefikoidc:
+#       moduleName: github.com/lukaszraczylo/traefikoidc
+#       version: v0.8.13
