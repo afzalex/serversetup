@@ -1,3 +1,4 @@
 /.build
 traefik
 *.tar.gz
+plugins-storage
