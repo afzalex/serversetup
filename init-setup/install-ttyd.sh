@@ -8,7 +8,7 @@ sudo apt-get install -y ttyd
 sudo sed -i '/^TTYD_OPTIONS=/d' /etc/default/ttyd
 
 # Add the TTYD_OPTIONS line to the /etc/default/ttyd file
-echo "TTYD_OPTIONS=\"-i lo -p 7681 -b /ttyd --writable /bin/bash\"" \
+echo "TTYD_OPTIONS=\"-i lo -p 7681 -b /ttyd --writable /bin/bash -l\"" \
     | sudo tee -a /etc/default/ttyd >/dev/null
 
 sudo tee /etc/systemd/system/ttyd.service.d/override.conf > /dev/null <<EOF

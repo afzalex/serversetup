@@ -21,6 +21,10 @@ read -p "Enable CUPS Port (y/n): " INPUT; if [[ "$INPUT" == [yY] ]]; then
     sudo ufw allow CUPS
 fi
 
+read -p "Enable mDNS Port (y/n): " INPUT; if [[ "$INPUT" == [yY] ]]; then 
+    sudo ufw allow mdns
+fi
+
 sudo ufw status numbered
 
 read -p "Continue ..."

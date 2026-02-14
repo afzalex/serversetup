@@ -8,7 +8,7 @@ sudo tee /usr/lib/systemd/system/filebrowser.service <<EOF
 Description=FileBrowser
 
 [Service]
-ExecStart=/usr/local/bin/filebrowser -b /browser -r /home/afzalex -d /home/afzalex/serversetup/filebrowser/filebrowser.db
+ExecStart=/usr/local/bin/filebrowser -b /browser -r ${HOME} -d ${PWD}/filebrowser.db --noauth
 # ExecStart=/usr/local/bin/filebrowser -r /home/pi
 # WorkingDirectory=/home/pi
 # User=pi

@@ -1,6 +1,7 @@
 #!/bin/bash
 export TRAEFIK_BASE_DIR="$PWD/.build"
 export TRAEFIK_CERTS_DIR="$PWD/.build/certs"
+export TRAEFIK_LOC="$TRAEFIK_BASE_DIR/traefik"
 
 set -e
 
