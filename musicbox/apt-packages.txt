@@ -1,0 +1,34 @@
+# Python / GStreamer bindings
+python3-venv
+python3-gi
+python3-gst-1.0
+python3-charset-normalizer
+
+# GStreamer
+gir1.2-gstreamer-1.0
+gir1.2-gst-plugins-base-1.0
+gstreamer1.0-plugins-base
+gstreamer1.0-plugins-good
+gstreamer1.0-plugins-ugly
+gstreamer1.0-alsa
+
+# Bluetooth audio
+bluez
+bluez-alsa-utils
+libasound2-plugin-bluez
+alsa-utils
+
+# Additional streaming codecs and tools
+gstreamer1.0-plugins-bad
+gstreamer1.0-libav
+ffmpeg
+gettext-base
+
+# Deno installer dependency
+curl
+unzip
+ca-certificates
+
+# Reverse Proxy
+nginx
+

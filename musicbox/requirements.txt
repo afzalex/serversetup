@@ -1,0 +1,11 @@
+# Mopidy core
+Mopidy==3.4.2
+Mopidy-Iris==3.70.0
+Pykka>=3,<4
+setuptools<82
+
+# YouTube integration
+Mopidy-YouTube==4.0.2
+ytmusicapi==1.12.3
+yt-dlp[default]
+

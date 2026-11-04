@@ -1,0 +1,52 @@
+
+# -----------------------------------
+# Python virtual environments
+# -----------------------------------
+.venv*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# -----------------------------------
+# Secrets and credentials
+# -----------------------------------
+secrets/
+.env
+.env.*
+!.env.example
+
+# Certificates and private keys
+*.key
+*.pem
+*.crt
+*.csr
+*.p12
+*.pfx
+
+# -----------------------------------
+# Runtime data
+# -----------------------------------
+media/*
+!media/.gitkeep
+
+*.log
+*.pid
+.cache/
+
+# -----------------------------------
+# Temporary and backup files
+# -----------------------------------
+*.bak
+*.tmp
+*.swp
+*.swo
+*~
+
+# -----------------------------------
+# OS files
+# -----------------------------------
+.DS_Store
+Thumbs.db
+
